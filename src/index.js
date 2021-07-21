@@ -1,15 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-import App from "./components/views/App";
-import "./assets/styles/index.css"
+import Index from "./views/Index";
+import "./assets/styles/main.css";
+import Login from "./views/auth/Login";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Switch>
-        <Route path="/" exact component={App} />
-
+        <Route path="/" exact component={Index} />
+        <Route path="/login" exact component={Login} />
         <Redirect from="*" to="/" />
       </Switch>
     </BrowserRouter>
