@@ -4,17 +4,11 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import Index from "./views/Index";
 import "./assets/styles/main.css";
 import Login from "./views/auth/Login";
-import PublicRoute from "./utils/PublicRoute";
+import App from "./views/App";
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Switch>
-        <Route path="/" exact component={Index} />
-        <PublicRoute path="/login" exact component={Login} />
-        <Redirect from="*" to="/" />
-      </Switch>
-    </BrowserRouter>
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );

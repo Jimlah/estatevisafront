@@ -2,6 +2,8 @@ import { Route } from "react-router-dom";
 import { getUser } from "./common";
 import { Redirect } from "react-router-dom";
 const PublicRoute = ({ component: Component, ...rest }) => {
+  console.log(getUser());
+
   return (
     <Route
       {...rest}

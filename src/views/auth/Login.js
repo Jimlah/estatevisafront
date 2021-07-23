@@ -1,11 +1,13 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import background from "../../assets/img/register_bg_2.png";
 import ValidationError from "../../components/Alerts/ValidationError";
 import useFetch from "../../hooks/useFetch";
 import { fetch } from "../../utils/Fetch";
 import { setUserSession } from "./../../utils/common";
 import Alert from "./../../components/Alerts/Alert";
+import { UserContext } from "./../../hooks/UserContext";
+import { useHistory } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -13,6 +15,9 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [alert, setAlert] = useState(null);
+
+  const { setUser } = useContext(UserContext);
+  const history = useHistory();
 
   const handleSubmit = (event) => {
     setLoading(true);
@@ -27,18 +32,19 @@ export default function Login() {
       .then((response) => {
         setLoading(false);
         if (response.data.status === "success") {
-          setUserSession(response.data);
-          console.log("Login success");
+          setUserSession(JSON.stringify(response.data.data));
+          setUser(response.data.data);
+          history.push("/dashboard");
         }
 
         if (response.data.status === "error") {
           setError(response.data.data);
+          setAlert({
+            message: response.data.message,
+            type: response.data.status,
+          });
         }
 
-        setAlert({
-          message: response.data.message,
-          type: response.data.status,
-        });
         // window.location.href = "/";
       })
       .catch((error) => {
@@ -46,8 +52,6 @@ export default function Login() {
         console.log(error.message);
       });
   };
-
-  // console.log(alert);
 
   return (
     <div

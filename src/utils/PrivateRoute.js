@@ -1,7 +1,8 @@
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import { getUser } from "./common";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
+  console.log(getUser());
   return (
     <Route
       {...rest}
@@ -10,7 +11,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
           <Component {...props} />
         ) : (
           <Redirect
-            to={{ pathname: "/login", state: { from: props.location } }}
+            to={{ pathname: "/dashboard", state: { from: props.location } }}
           />
         )
       }
