@@ -25,12 +25,12 @@ export default function Login() {
       .post("http://127.0.0.1:8000/api/auth/signin", formData)
       .then((response) => {
         setLoading(false);
-        if (response.data.success) {
+        if (response.data.status === "success") {
           setUserSession(response.data);
           console.log("Login success");
         }
 
-        if (!response.data.success) {
+        if (response.data.status === "error") {
           setError(response.data.data);
         }
 
@@ -102,10 +102,10 @@ export default function Login() {
             </button>
           </div>
         </form>
-      </div>
-      <div className="flex justify-between items-center text-xs w-full text-gray-100 mt-5 px-2">
-        <a href="">Forgot your password?</a>
-        <a href="">Create new account</a>
+        <div className="flex justify-between items-center text-xs w-full text-gray-900 hover:text-gray-700 mt-5">
+          <a href="">Forgot your password?</a>
+          <a href="">Create new account</a>
+        </div>
       </div>
     </div>
   );
