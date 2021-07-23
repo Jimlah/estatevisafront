@@ -5,6 +5,7 @@ import ValidationError from "../../components/Alerts/ValidationError";
 import useFetch from "../../hooks/useFetch";
 import { fetch } from "../../utils/Fetch";
 import { setUserSession } from "./../../utils/common";
+import Alert from "./../../components/Alerts/Alert";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -34,7 +35,10 @@ export default function Login() {
           setError(response.data.data);
         }
 
-        setAlert(response.data.message);
+        setAlert({
+          message: response.data.message,
+          type: response.data.status,
+        });
         // window.location.href = "/";
       })
       .catch((error) => {
@@ -42,6 +46,8 @@ export default function Login() {
         console.log(error.message);
       });
   };
+
+  // console.log(alert);
 
   return (
     <div
@@ -51,6 +57,7 @@ export default function Login() {
       }}
     >
       <div className="flex flex-col items-center space-y-5 bg-gray-300 rounded-xl p-6 w-full max-w-xs">
+        <Alert error={alert?.message} type={alert?.type} />
         <span className="font-bold text-2xl">Login</span>
         <form
           onSubmit={handleSubmit}
@@ -102,9 +109,8 @@ export default function Login() {
             </button>
           </div>
         </form>
-        <div className="flex justify-between items-center text-xs w-full text-gray-900 hover:text-gray-700 mt-5">
+        <div className="flex justify-center items-center text-xs w-full text-gray-900 hover:text-gray-700 mt-5">
           <a href="">Forgot your password?</a>
-          <a href="">Create new account</a>
         </div>
       </div>
     </div>
