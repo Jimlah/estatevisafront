@@ -11,6 +11,8 @@ const ValidationError = ({ error }) => {
   useEffect(() => {
     if (error) {
       setDisplay(true);
+    } else {
+      setDisplay(false);
     }
   }, [error]);
 

@@ -4,13 +4,14 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import Index from "./views/Index";
 import "./assets/styles/main.css";
 import Login from "./views/auth/Login";
+import PublicRoute from "./utils/PublicRoute";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={Index} />
-        <Route path="/login" exact component={Login} />
+        <PublicRoute path="/login" exact component={Login} />
         <Redirect from="*" to="/" />
       </Switch>
     </BrowserRouter>
