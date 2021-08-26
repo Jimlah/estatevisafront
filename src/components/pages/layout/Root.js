@@ -1,13 +1,15 @@
 import BaseAuth from "../auth/BaseAuth";
 import Main from "../dashboard/Main";
 import { Route, Switch } from "react-router-dom";
+import PrivateRoute from "../../Routes/PrivateRoute";
+import PublicRoute from "../../Routes/PublicRoute";
 
 const Root = () => {
   return (
     <div>
       <Switch>
-        <Route path="/auth" component={BaseAuth} />
-        <Route path="/dashboard" component={Main} />
+        <PublicRoute restricted={true} path="/auth" component={BaseAuth} />
+        <PrivateRoute path="/dashboard" component={Main} />
       </Switch>
     </div>
   );
