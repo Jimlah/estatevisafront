@@ -4,7 +4,7 @@ const login = async (formData) => {
   var resp = {};
   try {
     const response = await http.post("/login", formData);
-    return response.data;
+    resp = response.data;
   } catch (error) {
     resp = error.response.data ?? null;
   }
