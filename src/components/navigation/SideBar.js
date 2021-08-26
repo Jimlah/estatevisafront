@@ -58,13 +58,13 @@ const Sidebar = () => {
               <IconContext.Provider value={{ className: "h-5 w-5 text-white" }}>
                 <div className="flex items-center justify-center space-x-3">
                   <a
-                    href=""
+                    href="https://play.google.com/"
                     className="p-2 bg-gray-500 rounded-full hover:bg-gray-900"
                   >
                     <IoLogoGooglePlaystore />
                   </a>
                   <a
-                    href=""
+                    href="https://www.apple.com/store"
                     className="p-2 bg-gray-500 rounded-full hover:bg-gray-900"
                   >
                     <IoLogoApple />

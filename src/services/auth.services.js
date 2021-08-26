@@ -26,7 +26,7 @@ const forgotPassword = async (formData) => {
 const logOut = async () => {
   var resp = {};
   try {
-    const response = await http.post("/logout", {});
+    const response = await http.get("/logout");
     return response.data;
   } catch (error) {
     resp = error.response.data ?? null;

@@ -2,12 +2,14 @@ import { useHistory } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { removeUserSession } from "../../../utils/common";
 import { UserContext } from "./../../../context/UserContext";
+import { Auth } from "./../../../services/auth.services";
 const Logout = () => {
   const history = useHistory();
   const { setUser } = useContext(UserContext);
 
   useEffect(() => {
     setTimeout(() => {
+      Auth.logOut();
       removeUserSession();
       setUser(null);
       history.push("/auth/login");
@@ -16,7 +18,7 @@ const Logout = () => {
     return () => {
       setUser(null);
     };
-  }, [history]);
+  }, [history, setUser]);
 
   return (
     <div className="absolute z-50 top-0 left-0 h-screen w-full flex items-center justify-center">
