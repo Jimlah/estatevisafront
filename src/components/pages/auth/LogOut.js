@@ -1,11 +1,16 @@
 import { useHistory } from "react-router-dom";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { removeUserSession } from "../../../utils/common";
+import { UserContext } from "./../../../context/UserContext";
 const Logout = () => {
   const history = useHistory();
+  const { setUser } = useContext(UserContext);
 
   useEffect(() => {
     setTimeout(() => {
-      history.push("/dashboard");
+      removeUserSession();
+      setUser(null);
+      history.push("/auth/login");
     }, 1000);
 
     return () => {
