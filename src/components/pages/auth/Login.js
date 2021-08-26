@@ -2,7 +2,7 @@ import useInput from "../../../hooks/useInput";
 import Input from "../../form/Input";
 import SubmitButton from "./../../form/SubmitButton";
 import { Auth } from "./../../../services/auth.services";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AlertContext } from "./../../../context/AlertContext";
 import { Link, useHistory } from "react-router-dom";
 import { UserContext } from "../../../context/UserContext";
@@ -37,9 +37,15 @@ const Login = () => {
       setUserSession(JSON.stringify(res));
       setUser(res);
       setIsLoading(false);
-      history.push("/dashboard");
     }
+    history.push("/dashboard");
   };
+
+  useEffect(() => {
+    return () => {
+      setIsLoading(false);
+    };
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center space-y-3 w-full max-w-xs bg-white dark:bg-gray-700 py-5 rounded-md bg-opacity-50">

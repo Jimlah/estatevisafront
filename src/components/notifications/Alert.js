@@ -61,11 +61,14 @@ const Alert = ({ message, handleClick, status }) => {
   }
 
   useEffect(() => {
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       handleClick();
     }, 5000);
 
-    return () => {};
+    return () => {
+      clearTimeout(timeout);
+      return;
+    };
   }, [handleClick]);
 
   return (

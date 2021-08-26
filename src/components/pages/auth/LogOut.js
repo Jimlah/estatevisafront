@@ -14,7 +14,7 @@ const Logout = () => {
     }, 1000);
 
     return () => {
-      return null;
+      setUser(null);
     };
   }, [history]);
 
