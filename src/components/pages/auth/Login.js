@@ -4,12 +4,16 @@ import SubmitButton from "./../../form/SubmitButton";
 import { Auth } from "./../../../services/auth.services";
 import { useContext } from "react";
 import { AlertContext } from "./../../../context/AlertContext";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { UserContext } from "../../../context/UserContext";
+import { setUserSession } from "../../../utils/common";
 
 const Login = () => {
   const [email, bindEmail] = useInput("");
   const [password, bindPassword] = useInput("");
-  const { setMessage, setErrors, errors } = useContext(AlertContext);
+  const { setMessage, setErrors, errors, setStatus } = useContext(AlertContext);
+  const { setUser, user } = useContext(UserContext);
+  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,11 +21,21 @@ const Login = () => {
     const res = await Auth.login(JSON.stringify(formData));
     setMessage(null);
     setErrors(null);
+    setStatus(null);
+    if (res.status) {
+      setStatus(res.status);
+    }
     if (res.message) {
       setMessage(res.message);
     }
     if (res.errors) {
       setErrors(res.errors);
+    }
+    if (res.token) {
+      setUserSession(JSON.stringify(res));
+      setUser(res);
+
+      history.push("/dashboard");
     }
   };
 
@@ -54,13 +68,15 @@ const Login = () => {
             id="remember_me"
             value="true"
           />
-          <label htmlFor="remember_me" className="text-gray-500">Remember me</label>
+          <label htmlFor="remember_me" className="text-gray-500">
+            Remember me
+          </label>
         </div>
         <SubmitButton />
       </form>
       <div>
         <Link
-          to={"/forget-password"}
+          to={"/auth/forgot-password"}
           className="text-xs font-medium tracking-wider text-blue-500 hover:text-blue-700"
         >
           Forget your password?
