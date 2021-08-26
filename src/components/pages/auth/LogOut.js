@@ -11,7 +11,7 @@ const Logout = () => {
     return () => {
       return null;
     };
-  }, []);
+  }, [history]);
 
   return (
     <div className="absolute z-50 top-0 left-0 h-screen w-full flex items-center justify-center">

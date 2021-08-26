@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { MdDashboard } from "react-icons/md";
 import { IconContext } from "react-icons/lib";
 const NavItem = ({ to, name, icon, hide = false }) => {
   return (

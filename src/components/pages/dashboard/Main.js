@@ -1,7 +1,7 @@
 import { Switch } from "react-router-dom";
 import Sidebar from "../../navigation/SideBar";
 import Logout from "../auth/LogOut";
-import PrivateRoute from './../../Routes/PrivateRoute';
+import PrivateRoute from "./../../Routes/PrivateRoute";
 
 const Main = () => {
   return (
