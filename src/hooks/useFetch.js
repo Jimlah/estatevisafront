@@ -1,20 +1,30 @@
 import { useEffect, useState } from "react";
 
-const useFetch = (func, id = null) => {
+const useFetch = (func = () => {}, id = null) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(async () => {
+  useEffect(() => {
     setLoading(true);
     setData(null);
     setError(null);
 
-    const res = await func(id);
+    async function fetchData() {
+      const res = await func(id);
 
-    console.log(res);
+      if (res.data) {
+        setData(res.data);
+      }
 
-    setLoading(false);
+      if (res.message) {
+        setError(res.message);
+      }
+
+      setLoading(false);
+    }
+
+    fetchData();
 
     return () => {
       setLoading(false);

@@ -3,6 +3,7 @@ import Sidebar from "../../navigation/SideBar";
 import TopBar from "../../navigation/TopBar";
 import Logout from "../auth/LogOut";
 import PrivateRoute from "./../../Routes/PrivateRoute";
+import ViewEstates from "./Estate/ViewEstates";
 
 const Main = () => {
   return (
@@ -10,7 +11,15 @@ const Main = () => {
       <Sidebar />
       <main className="w-full">
         <TopBar />
-        Main
+        <div className="px-2 sm:px-5">
+          <Switch>
+            <PrivateRoute
+              path="/dashboard/estates"
+              component={ViewEstates}
+              exact
+            />
+          </Switch>
+        </div>
         <Switch>
           <PrivateRoute path="/dashboard/logout" component={Logout} />
         </Switch>

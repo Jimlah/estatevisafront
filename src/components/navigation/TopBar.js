@@ -2,6 +2,7 @@ import { UserContext } from "../../context/UserContext";
 import Search from "../form/Search";
 import { useContext } from "react";
 import ChangMode from "../form/ChangeMode";
+import { FaUserCircle } from "react-icons/fa";
 
 const TopBar = () => {
   const { user } = useContext(UserContext);
@@ -14,8 +15,12 @@ const TopBar = () => {
       <div className="flex space-x-3 items-center justify-center">
         <ChangMode />
         <span className="flex items-center space-x-1">
-          <span>Icon</span>
-          <span className="hidden sm:inline-block">{user?.user?.email}</span>
+          <span>
+            <FaUserCircle />
+          </span>
+          <span className="hidden sm:inline-block">
+            {user?.user?.profile?.firstname ?? "User"}
+          </span>
         </span>
       </div>
     </div>

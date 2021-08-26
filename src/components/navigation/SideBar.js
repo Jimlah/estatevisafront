@@ -31,7 +31,7 @@ const Sidebar = () => {
             hide={hide}
           />
           <NavItem
-            to="/estates"
+            to="/dashboard/estates"
             icon={<BiBuildingHouse />}
             name="Estates"
             hide={hide}
