@@ -2,7 +2,7 @@ import useInput from "../../../hooks/useInput";
 import Input from "../../form/Input";
 import SubmitButton from "./../../form/SubmitButton";
 import { Auth } from "./../../../services/auth.services";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AlertContext } from "./../../../context/AlertContext";
 import { Link, useHistory } from "react-router-dom";
 import { UserContext } from "../../../context/UserContext";
@@ -11,12 +11,14 @@ import { setUserSession } from "../../../utils/common";
 const Login = () => {
   const [email, bindEmail] = useInput("");
   const [password, bindPassword] = useInput("");
+  const [isLoading, setIsLoading] = useState(false);
   const { setMessage, setErrors, errors, setStatus } = useContext(AlertContext);
   const { setUser } = useContext(UserContext);
   const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     const formData = { email, password };
     const res = await Auth.login(JSON.stringify(formData));
     setMessage(null);
@@ -34,7 +36,7 @@ const Login = () => {
     if (res.token) {
       setUserSession(JSON.stringify(res));
       setUser(res);
-
+      setIsLoading(false);
       history.push("/dashboard");
     }
   };
@@ -72,7 +74,7 @@ const Login = () => {
             Remember me
           </label>
         </div>
-        <SubmitButton />
+        <SubmitButton isLoading={isLoading} />
       </form>
       <div>
         <Link

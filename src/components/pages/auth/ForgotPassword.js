@@ -2,16 +2,18 @@ import Input from "../../form/Input";
 import useInput from "./../../../hooks/useInput";
 import { Link } from "react-router-dom";
 import SubmitButton from "../../form/SubmitButton";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AlertContext } from "../../../context/AlertContext";
 import { Auth } from "../../../services/auth.services";
 
 const ForgotPassword = () => {
   const [email, bindEmail] = useInput("");
   const { errors, setErrors, setMessage } = useContext(AlertContext);
+  const [isLoading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const formData = { email };
 
     const res = await Auth.forgotPassword(formData);
@@ -23,6 +25,7 @@ const ForgotPassword = () => {
     if (res.errors) {
       setErrors(res.errors);
     }
+    setLoading(false);
   };
 
   return (
@@ -39,7 +42,7 @@ const ForgotPassword = () => {
           label={"email"}
           bind={bindEmail}
         />
-        <SubmitButton />
+        <SubmitButton isLoading={isLoading} />
       </form>
       <div>
         <Link
