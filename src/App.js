@@ -1,9 +1,9 @@
 import { AlertContext } from "./context/AlertContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Alert from "./components/notifications/Alert";
-import BaseAuth from "./components/pages/auth/BaseAuth";
 import { UserContext } from "./context/UserContext";
 import Root from "./components/pages/layout/Root";
+import { getUser } from "./utils/common";
 
 const App = () => {
   const [message, setMessage] = useState(null);
@@ -21,12 +21,26 @@ const App = () => {
     setStatus,
   };
 
+  useEffect(() => {
+    if (getUser() !== null) {
+      setUser(getUser());
+    }
+
+    return () => {
+      setUser(null);
+    };
+  }, []);
+
   return (
     <div>
       <UserContext.Provider value={initialUserState}>
         <AlertContext.Provider value={initialAlertState}>
           {message && (
-            <Alert message={message} status={status} handleClick={() => setMessage(null)} />
+            <Alert
+              message={message}
+              status={status}
+              handleClick={() => setMessage(null)}
+            />
           )}
           <Root />
         </AlertContext.Provider>
