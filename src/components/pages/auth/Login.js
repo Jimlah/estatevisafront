@@ -12,7 +12,7 @@ const Login = () => {
   const [email, bindEmail] = useInput("");
   const [password, bindPassword] = useInput("");
   const { setMessage, setErrors, errors, setStatus } = useContext(AlertContext);
-  const { setUser, user } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
   const history = useHistory();
 
   const handleSubmit = async (e) => {
