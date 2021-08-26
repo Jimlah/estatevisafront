@@ -1,6 +1,7 @@
 import { TiTimes } from "react-icons/ti";
 import { CgDanger } from "react-icons/cg";
 import { IconContext } from "react-icons";
+import { useEffect } from "react";
 
 const Error = () => {
   return (
@@ -58,6 +59,14 @@ const Alert = ({ message, handleClick, status }) => {
     type = Error();
     style = "red";
   }
+
+  useEffect(() => {
+    setTimeout(() => {
+      handleClick();
+    }, 5000);
+
+    return () => {};
+  }, [handleClick]);
 
   return (
     <div
