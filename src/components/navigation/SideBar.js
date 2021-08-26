@@ -2,6 +2,9 @@ import { MdDashboard } from "react-icons/md";
 import NavItem from "./NavItem";
 import { BiLogOut, BiBuildingHouse } from "react-icons/bi";
 import { useState } from "react";
+import mobile from "../../assets/img/mobile.png";
+import { IoLogoGooglePlaystore, IoLogoApple } from "react-icons/io5";
+import { IconContext } from "react-icons/lib";
 
 const Sidebar = () => {
   const [hide, setHide] = useState(false);
@@ -42,8 +45,34 @@ const Sidebar = () => {
         />
       </div>
       {!hide && (
-        <div className="bg-gradient-to-r from-purple-500 to-yellow-500 w-full rounded-md p-2">
-          Hey
+        <div className="bg-gradient-to-r from-purple-500 to-yellow-500 w-full rounded-md shadow-md">
+          <div className="bg-opacity-25">
+            <div
+              style={{ backgroundImage: `url(${mobile})` }}
+              className="bg-cover w-full h-20 rounded-t-md"
+            ></div>
+            <div className="p-3 flex flex-col items-center justify-center space-y-2">
+              <p className="w-full text-center text-gray-700 text-sm">
+                Get Mobile App
+              </p>
+              <IconContext.Provider value={{ className: "h-5 w-5 text-white" }}>
+                <div className="flex items-center justify-center space-x-3">
+                  <a
+                    href=""
+                    className="p-2 bg-gray-500 rounded-full hover:bg-gray-900"
+                  >
+                    <IoLogoGooglePlaystore />
+                  </a>
+                  <a
+                    href=""
+                    className="p-2 bg-gray-500 rounded-full hover:bg-gray-900"
+                  >
+                    <IoLogoApple />
+                  </a>
+                </div>
+              </IconContext.Provider>
+            </div>
+          </div>
         </div>
       )}
     </nav>
