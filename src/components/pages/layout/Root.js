@@ -6,7 +6,7 @@ import PublicRoute from "../../Routes/PublicRoute";
 
 const Root = () => {
   return (
-    <div>
+    <div className="bg-indigo-900 h-screen">
       <Switch>
         <PublicRoute restricted={true} path="/auth" component={BaseAuth} />
         <PrivateRoute path="/dashboard" component={Main} />

@@ -45,6 +45,7 @@
         "autoprefixer": "^9.8.6",
         "postcss": "^7.0.36",
         "postcss-cli": "^8.3.1",
+        "resize-observer-polyfill": "^1.5.1",
         "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.6"
     }
 }

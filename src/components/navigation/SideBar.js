@@ -14,13 +14,15 @@ const Sidebar = () => {
   };
 
   return (
-    <nav className="h-full bg-white px-2 flex flex-col items-start justify-start space-y-8 py-2">
+    <nav className="h-full bg-white px-2 flex flex-col items-start justify-start space-y-8 py-2 dark:bg-gray-900">
       <button
         onClick={handleHide}
         className="flex items-center justify-center space-x-3 focus:outline-none"
       >
         <span className="font-bold italic text-3xl text-indigo-500">EV</span>
-        {!hide && <span>EstateVisa</span>}
+        {!hide && (
+          <span className="dark:text-gray-100 font-semibold">EstateVisa</span>
+        )}
       </button>
       <div className="flex items-start justify-between flex-col h-full">
         <div className="flex flex-col space-y-3 items-start">

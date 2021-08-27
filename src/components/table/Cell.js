@@ -1,15 +1,25 @@
 const Cell = ({
   className,
   children,
+  head = false,
   rowIndex,
   columnIndex,
   style,
   ...props
 }) => {
+
   return (
-    <td className={className} style={style} {...props}>
-      {children}
-    </td>
+    <>
+      {head ? (
+        <th className={className} style={style} {...props}>
+          {children}
+        </th>
+      ) : (
+        <td className={className} style={style} {...props}>
+          {children}
+        </td>
+      )}
+    </>
   );
 };
 

@@ -15,7 +15,7 @@ const NavItem = ({ to, name, icon, hide = false }) => {
           {icon}
         </IconContext.Provider>
       </span>
-      {!hide && <span>{name}</span>}
+      {!hide && <span className="dark:hover:text-gray-200">{name}</span>}
     </Link>
   );
 };

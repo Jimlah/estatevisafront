@@ -8,7 +8,7 @@ const TopBar = () => {
   const { user } = useContext(UserContext);
 
   return (
-    <div className="bg-white dark:bg-gray-900 dark:bg-opacity-10 w-full px-2 sm:px-5 py-3 flex items-center justify-between text-gray-500 shadow-md space-x-5 overflow-hidden">
+    <div className="bg-white dark:bg-gray-900 dark:bg-opacity-75 w-full px-2 sm:px-5 py-3 flex items-center justify-between text-gray-500 shadow-md space-x-5 overflow-hidden">
       <div className="w-1/2 sm:max-w-max">
         <Search />
       </div>
