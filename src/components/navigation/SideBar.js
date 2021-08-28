@@ -7,7 +7,7 @@ import { IoLogoGooglePlaystore, IoLogoApple } from "react-icons/io5";
 import { IconContext } from "react-icons/lib";
 
 const Sidebar = () => {
-  const [hide, setHide] = useState(false);
+  const [hide, setHide] = useState(true);
 
   const handleHide = () => {
     setHide(!hide);
