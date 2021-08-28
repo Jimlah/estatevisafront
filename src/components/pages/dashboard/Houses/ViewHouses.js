@@ -6,6 +6,7 @@ import { SearchContext } from "./../../../../context/SearchContext";
 import { Houses } from "../../../../services/houses.services";
 import usePagination from "./../../../../hooks/usePagination";
 import PaginationButton from "../../../ActionButtons/PaginationButton";
+import CreateButton from "../../../ActionButtons/CreateButton";
 const ViewHouses = () => {
   const { setMessage } = useContext(AlertContext);
   const [paginateData, setPaginateData] = useState([]);
@@ -28,14 +29,14 @@ const ViewHouses = () => {
   }, [error, setMessage, data, result, currentPage, setSearchData]);
 
   return (
-    <div className="bg-white bg-opacity-75 p-5 dark:bg-gray-900 rounded-md shadow w-full h-[95%] flex flex-col space-y-2">
+    <div className="bg-opacity-50 px-5 py-2.5 bg-white dark:bg-opacity-10 rounded-md shadow w-full flex flex-col space-y-2 justify-start">
       <div>
-        <button className="px-3 py-2">Create</button>
+        <CreateButton />
       </div>
-      <div className="w-full overflow-x-auto overflow-y-auto h-full font-mono">
+      <div className="w-full overflow-x-auto font-mono">
         <table className="table-auto w-full relative">
           <thead>
-            <tr className="border-b  border-gray-500 bg-gray-800 bg-opacity-50 sticky top-0">
+            <tr className="border-b font-bold  border-gray-500 bg-gray-200 dark:bg-gray-800 sticky top-0">
               <Col children={"Code"} head="true" />
               <Col children={"Estate Name"} head="true" />
               <Col children={"House Type"} head="true" />

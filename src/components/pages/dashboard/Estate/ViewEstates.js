@@ -37,11 +37,11 @@ const ViewEstates = () => {
   }, [error, setMessage, data, result, currentPage, setSearchData]);
 
   return (
-    <div className="bg-white bg-opacity-75 p-5 dark:bg-gray-900 rounded-md shadow w-full h-[95%] flex flex-col space-y-2">
+    <div className="bg-white bg-opacity-75 p-5 dark:bg-opacity-10 rounded-md shadow w-full flex flex-col space-y-2">
       <div className="w-full overflow-x-auto overflow-y-auto h-full font-mono">
         <table className="table-auto w-full relative">
           <thead>
-            <tr className="border-b  border-gray-500 bg-gray-100 sticky top-0 text-gray-900 dark:bg-gray-700 dark:text-gray-100">
+            <tr className="border-b font-bold border-gray-500 bg-gray-200 dark:bg-gray-800 sticky top-0 text-gray-900 dark:text-gray-100">
               <Col children={"Logo"} head="true" />
               <Col children={"Name"} head="true" />
               <Col children={"Owner"} head="true" />
