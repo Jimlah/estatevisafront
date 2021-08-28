@@ -1,6 +1,6 @@
 import { MdDashboard } from "react-icons/md";
 import NavItem from "./NavItem";
-import { BiLogOut, BiBuildingHouse } from "react-icons/bi";
+import { BiLogOut, BiBuildingHouse, BiHomeAlt } from "react-icons/bi";
 import { useState } from "react";
 import mobile from "../../assets/img/mobile.png";
 import { IoLogoGooglePlaystore, IoLogoApple } from "react-icons/io5";
@@ -36,6 +36,12 @@ const Sidebar = () => {
             to="/dashboard/estates"
             icon={<BiBuildingHouse />}
             name="Estates"
+            hide={hide}
+          />
+          <NavItem
+            to="/dashboard/houses"
+            icon={<BiHomeAlt />}
+            name="Houses"
             hide={hide}
           />
         </div>

@@ -7,7 +7,9 @@ const Col = ({ children, head = false }) => {
   return (
     <>
       <Cell
-        className={`px-6 py-3 text-left ${head ? thead : tbody}`}
+        className={`px-6 py-3 text-left whitespace-nowrap ${
+          head ? thead : tbody
+        }`}
         children={children}
         head={head}
       />

@@ -6,6 +6,7 @@ import PrivateRoute from "./../../Routes/PrivateRoute";
 import ViewEstates from "./Estate/ViewEstates";
 import { SearchContext } from "../../../context/SearchContext";
 import { useState } from "react";
+import ViewHouses from './Houses/ViewHouses';
 
 const Main = () => {
   const [searchData, setSearchData] = useState([]);
@@ -20,15 +21,14 @@ const Main = () => {
           <TopBar />
           <div className="px-2 sm:px-5 py-8 w-full h-full flex items-start justify-start flex-col">
             <Switch>
-    
               <PrivateRoute
                 path="/dashboard/estates"
                 component={ViewEstates}
                 exact
               />
               <PrivateRoute
-                path="/dashboard/estates/:{id}"
-                component={ViewEstates}
+                path="/dashboard/houses"
+                component={ViewHouses}
                 exact
               />
             </Switch>
