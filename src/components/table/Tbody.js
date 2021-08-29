@@ -1,6 +1,7 @@
 import Col from "./Col";
+import DeleteButton from "../ActionButtons/DeleteButton";
 
-const Tbody = ({ data, column }) => {
+const Tbody = ({ data, column, setDeleteId }) => {
   // map an array of objects to an array of trs
 
   return (
@@ -11,6 +12,17 @@ const Tbody = ({ data, column }) => {
             {column?.map((item, index) => (
               <Col children={item(estate)} key={index} />
             ))}
+            {setDeleteId && (
+              <Col
+                children={
+                  <DeleteButton
+                    handleDelete={() => {
+                      setDeleteId(estate.id);
+                    }}
+                  />
+                }
+              />
+            )}
           </tr>
         ))
       ) : (
