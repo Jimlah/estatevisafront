@@ -10,6 +10,7 @@ import DeleteButton from "./../../../ActionButtons/DeleteButton";
 import DeleteConfirmation from "../../../notifications/DeleteConfimation";
 import Thead from "./../../../table/Thead";
 import Tbody from "../../../table/Tbody";
+import Logo from "../../../miscellaneous/Logo";
 const ViewEstates = () => {
   const { setMessage } = useContext(AlertContext);
   const [paginateData, setPaginateData] = useState([]);
@@ -19,15 +20,6 @@ const ViewEstates = () => {
 
   const { pageData, currentPage, handleNext, handlePrev, setCurrentPage } =
     usePagination(paginateData);
-
-  const logo = ({ url }) => {
-    return (
-      <div
-        className="w-6 h-6 rounded-full"
-        style={{ backgroundImage: `url('${url}')` }}
-      ></div>
-    );
-  };
 
   useEffect(() => {
     setCurrentPage(1);
@@ -43,7 +35,7 @@ const ViewEstates = () => {
 
   const headings = ["Logo", "Name", "Code", "Owner", "Actions"];
   const column = [
-    (item) => logo({ url: item.logo }),
+    (item) => Logo({ url: item.logo }),
     (item) => item.name,
     (item) => item.code,
     (item) => item.user?.profile?.firstname ?? "UnKnown",
