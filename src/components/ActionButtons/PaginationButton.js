@@ -12,7 +12,7 @@ const PaginationButton = ({ handlePrev, handleNext, currentPage }) => {
         >
           <BsChevronLeft />
         </button>
-        <span className="text-gray-900 text-gray-100">{currentPage}</span>
+        <span className="text-gray-900 dark:text-gray-100">{currentPage}</span>
         <button
           onClick={handleNext}
           className=" focus:outline-none bg-indigo-500 text-white p-2 rounded-full hover:bg-indigo-700"
