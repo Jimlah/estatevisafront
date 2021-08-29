@@ -9,6 +9,7 @@ import PaginationButton from "../../../ActionButtons/PaginationButton";
 import DeleteButton from "./../../../ActionButtons/DeleteButton";
 import DeleteConfirmation from "../../../notifications/DeleteConfimation";
 import Thead from "./../../../table/Thead";
+import Tbody from "../../../table/Tbody";
 const ViewEstates = () => {
   const { setMessage } = useContext(AlertContext);
   const [paginateData, setPaginateData] = useState([]);
@@ -40,42 +41,27 @@ const ViewEstates = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error, setMessage, data, result, currentPage, setSearchData]);
 
-  const headings = ["Logo", "Name", "Owner", "Code", "Action"];
+  const headings = ["Logo", "Name", "Code", "Owner", "Actions"];
+  const column = [
+    (item) => logo({ url: item.logo }),
+    (item) => item.name,
+    (item) => item.code,
+    (item) => item.user?.profile?.firstname ?? "UnKnown",
+    (item) => (
+      <DeleteButton
+        handleDelete={() => {
+          setDeleteId(item.id);
+        }}
+      />
+    ),
+  ];
 
   return (
     <div className="bg-white bg-opacity-75 p-5 dark:bg-opacity-10 rounded-md shadow w-full flex flex-col space-y-2">
       <div className="w-full overflow-x-auto overflow-y-auto h-full font-mono">
         <table className="table-auto w-full relative">
           <Thead headings={headings} />
-          <tbody>
-            {pageData ? (
-              pageData?.map((estate, index) => (
-                <tr className="border-b border-gray-500" key={index}>
-                  <Col children={logo({ url: estate.logo })} />
-                  <Col children={estate.name} />
-                  <Col
-                    children={estate.user?.profile?.firstname ?? "Unknown"}
-                  />
-                  <Col children={estate.code} />
-                  <Col
-                    children={
-                      <DeleteButton
-                        handleDelete={() => {
-                          setDeleteId(estate.id);
-                        }}
-                      />
-                    }
-                  />
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td className="" rowSpan="full text-center font-bold text-sm">
-                  No data Available yet
-                </td>
-              </tr>
-            )}
-          </tbody>
+          <Tbody data={pageData} column={column} />
         </table>
       </div>
       <PaginationButton

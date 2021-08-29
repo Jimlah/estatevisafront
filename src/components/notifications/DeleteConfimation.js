@@ -20,6 +20,7 @@ const DeleteConfirmation = ({ funDelete, id, setId }) => {
     }
     setShow(false);
     setId(null);
+    window.location.reload();
   };
 
   useEffect(() => {
