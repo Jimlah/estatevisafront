@@ -6,11 +6,14 @@ import Col from "../../../table/Col";
 import { SearchContext } from "./../../../../context/SearchContext";
 import usePagination from "./../../../../hooks/usePagination";
 import PaginationButton from "../../../ActionButtons/PaginationButton";
+import DeleteButton from "./../../../ActionButtons/DeleteButton";
+import DeleteConfirmation from "../../../notifications/DeleteConfimation";
 const ViewEstates = () => {
   const { setMessage } = useContext(AlertContext);
   const [paginateData, setPaginateData] = useState([]);
   const { data, error } = useFetch(Estate.getAll);
   const { setSearchData, result } = useContext(SearchContext);
+  const [deleteId, setDeleteId] = useState(null);
 
   const { pageData, currentPage, handleNext, handlePrev, setCurrentPage } =
     usePagination(paginateData);
@@ -46,6 +49,7 @@ const ViewEstates = () => {
               <Col children={"Name"} head="true" />
               <Col children={"Owner"} head="true" />
               <Col children={"Code"} head="true" />
+              <Col children={"Action"} head="true" />
             </tr>
           </thead>
           <tbody>
@@ -58,6 +62,15 @@ const ViewEstates = () => {
                     children={estate.user?.profile?.firstname ?? "Unknown"}
                   />
                   <Col children={estate.code} />
+                  <Col
+                    children={
+                      <DeleteButton
+                        handleDelete={() => {
+                          setDeleteId(estate.id);
+                        }}
+                      />
+                    }
+                  />
                 </tr>
               ))
             ) : (
@@ -74,6 +87,11 @@ const ViewEstates = () => {
         handlePrev={handlePrev}
         handleNext={handleNext}
         currentPage={currentPage}
+      />
+      <DeleteConfirmation
+        funDelete={Estate.destroy}
+        id={deleteId}
+        setId={setDeleteId}
       />
     </div>
   );
