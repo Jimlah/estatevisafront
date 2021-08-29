@@ -45,19 +45,23 @@ const Info = () => {
 
 const Alert = ({ message, handleClick, status }) => {
   var type;
-  var style;
+  var bgStyle, borderStyle;
   if (status === "success") {
     type = Success();
-    style = "green";
+    bgStyle = "bg-green-200";
+    borderStyle = "border-green-500";
   } else if (status === "warning") {
     type = Warning();
-    style = "yellow";
+    bgStyle = "bg-yellow-200";
+    borderStyle = "border-yellow-500";
   } else if (status === "info") {
     type = Info();
-    style = "blue";
+    bgStyle = "bg-blue-200";
+    borderStyle = "border-blue-500";
   } else {
     type = Error();
-    style = "red";
+    bgStyle = "bg-red-200";
+    borderStyle = "border-red-500";
   }
 
   useEffect(() => {
@@ -73,7 +77,7 @@ const Alert = ({ message, handleClick, status }) => {
 
   return (
     <div
-      className={`absolute top-0 right-0 mr-5 mt-5 bg-${style}-200 border border-${style}-500  text-gray-800 rounded px-2 py-1 shadow-md font-medium tracking-wider text-xs`}
+      className={`absolute top-0 right-0 mr-5 mt-5 ${bgStyle} border ${borderStyle}  text-gray-900 rounded px-2 py-1 shadow-md font-medium tracking-wider text-xs`}
     >
       <div className="flex items-center space-x-2">
         {type}
