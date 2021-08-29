@@ -8,6 +8,7 @@ import usePagination from "./../../../../hooks/usePagination";
 import PaginationButton from "../../../ActionButtons/PaginationButton";
 import DeleteButton from "./../../../ActionButtons/DeleteButton";
 import DeleteConfirmation from "../../../notifications/DeleteConfimation";
+import Thead from "./../../../table/Thead";
 const ViewEstates = () => {
   const { setMessage } = useContext(AlertContext);
   const [paginateData, setPaginateData] = useState([]);
@@ -39,19 +40,13 @@ const ViewEstates = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error, setMessage, data, result, currentPage, setSearchData]);
 
+  const headings = ["Logo", "Name", "Owner", "Code", "Action"];
+
   return (
     <div className="bg-white bg-opacity-75 p-5 dark:bg-opacity-10 rounded-md shadow w-full flex flex-col space-y-2">
       <div className="w-full overflow-x-auto overflow-y-auto h-full font-mono">
         <table className="table-auto w-full relative">
-          <thead>
-            <tr className="border-b font-bold border-gray-500 bg-gray-200 dark:bg-gray-800 sticky top-0 text-gray-900 dark:text-gray-100">
-              <Col children={"Logo"} head="true" />
-              <Col children={"Name"} head="true" />
-              <Col children={"Owner"} head="true" />
-              <Col children={"Code"} head="true" />
-              <Col children={"Action"} head="true" />
-            </tr>
-          </thead>
+          <Thead headings={headings} />
           <tbody>
             {pageData ? (
               pageData?.map((estate, index) => (
