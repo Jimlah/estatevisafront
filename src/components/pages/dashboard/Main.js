@@ -1,4 +1,4 @@
-import { Switch } from "react-router-dom";
+import { Switch, useLocation } from "react-router-dom";
 import Sidebar from "../../navigation/SideBar";
 import TopBar from "../../navigation/TopBar";
 import Logout from "../auth/LogOut";
@@ -12,6 +12,7 @@ const Main = () => {
   const [searchData, setSearchData] = useState([]);
   const [result, setResult] = useState(searchData);
   const initialState = { searchData, setSearchData, result, setResult };
+  const location = useLocation();
 
   return (
     <SearchContext.Provider value={initialState}>
@@ -19,7 +20,10 @@ const Main = () => {
         <Sidebar />
         <main className="w-full overflow-hidden h-full">
           <TopBar />
-          <div className="px-2 sm:px-5 py-6 w-full h-full flex items-start justify-start flex-col">
+          <div className="px-2 sm:px-5 py-1 w-full h-full flex items-start justify-start flex-col">
+            <span className="text-gray-500 text-xs mb-2 font-semibold dark:text-gray-200">
+              {location.pathname}
+            </span>
             <Switch>
               <PrivateRoute
                 path="/dashboard/estates"
