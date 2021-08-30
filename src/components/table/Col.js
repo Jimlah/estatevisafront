@@ -7,7 +7,7 @@ const Col = ({ children, head = false, keyId }) => {
   return (
     <>
       <Cell
-        className={`px-6 py-3 text-left whitespace-nowrap ${
+        className={`px-6 py-3 text-left whitespace-nowrap overflow-hidden ${
           head ? thead : tbody
         }`}
         children={children}
