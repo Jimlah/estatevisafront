@@ -3,7 +3,6 @@ import Sidebar from "../../navigation/SideBar";
 import TopBar from "../../navigation/TopBar";
 import Logout from "../auth/LogOut";
 import PrivateRoute from "./../../Routes/PrivateRoute";
-import ViewEstates from "./Estate/ViewEstates";
 import { SearchContext } from "../../../context/SearchContext";
 import { useState } from "react";
 import ViewHouses from "./Houses/ViewHouses";
@@ -17,11 +16,11 @@ const Main = () => {
 
   return (
     <SearchContext.Provider value={initialState}>
-      <div className="h-screen flex border items-start justify-start w-full bg-gray-200 dark:bg-gray-900 dark:bg-opacity-75 h-full">
+      <div className="h-screen flex border items-start justify-start w-full bg-gray-200 dark:bg-gray-900 dark:bg-opacity-75">
         <Sidebar />
-        <main className="w-full overflow-hidden h-full">
+        <main className="w-full overflow-hidden h-full max-h-full mb-10">
           <TopBar />
-          <div className="px-2 sm:px-5 py-1 w-full h-full flex items-start justify-start flex-col">
+          <div className="px-2 sm:px-5 py-3 w-full h-full flex items-start justify-start flex-col overflow-y-auto">
             <span className="text-gray-500 text-xs mb-2 font-semibold dark:text-gray-200">
               {location.pathname}
             </span>

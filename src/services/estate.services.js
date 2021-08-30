@@ -10,6 +10,17 @@ const getAll = async () => {
   return resp;
 };
 
+const create = async (data) => {
+  var resp = {};
+  try {
+    const response = await http.post("/estates", data);
+    resp = response.data;
+  } catch (e) {
+    resp = e.response.data ?? null;
+  }
+  return resp;
+};
+
 const destroy = async (id) => {
   var resp = {};
   try {
@@ -24,4 +35,5 @@ const destroy = async (id) => {
 export const Estate = {
   getAll,
   destroy,
+  create,
 };

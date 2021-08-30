@@ -17,7 +17,7 @@ const ViewEstates = () => {
       destroy={Estate.destroy}
       headings={headings}
       columns={column}
-      create={"/estates/create"}
+      create={"/dashboard/estates/create"}
     />
   );
 };
