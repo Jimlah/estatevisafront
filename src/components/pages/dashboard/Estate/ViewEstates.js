@@ -1,7 +1,4 @@
-import { useState } from "react";
 import { Estate } from "./../../../../services/estate.services";
-
-import DeleteButton from "./../../../ActionButtons/DeleteButton";
 
 import Logo from "../../../miscellaneous/Logo";
 import Table from "./../../../table/Table";
