@@ -7,6 +7,7 @@ import ViewEstates from "./Estate/ViewEstates";
 import { SearchContext } from "../../../context/SearchContext";
 import { useState } from "react";
 import ViewHouses from "./Houses/ViewHouses";
+import EstateMain from "./Estate/EstateMain";
 
 const Main = () => {
   const [searchData, setSearchData] = useState([]);
@@ -25,11 +26,7 @@ const Main = () => {
               {location.pathname}
             </span>
             <Switch>
-              <PrivateRoute
-                path="/dashboard/estates"
-                component={ViewEstates}
-                exact
-              />
+              <PrivateRoute path="/dashboard/estates" component={EstateMain} />
               <PrivateRoute
                 path="/dashboard/houses"
                 component={ViewHouses}
