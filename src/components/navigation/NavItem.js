@@ -8,7 +8,7 @@ const NavItem = ({ to, name, icon, hide = false }) => {
 
   useEffect(() => {
     setIsActive(location.pathname === to);
-  }, [location]);
+  }, [location, to]);
 
   return (
     <Link

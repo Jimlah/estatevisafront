@@ -10,6 +10,18 @@ const getAll = async () => {
   return resp;
 };
 
+const destroy = async (id) => {
+  var resp = {};
+  try {
+    const response = await http.delete(`/houses/${id}`);
+    resp = response.data;
+  } catch (e) {
+    resp = e.resp.data ?? null;
+  }
+  return resp;
+};
+
 export const Houses = {
   getAll,
+  destroy,
 };

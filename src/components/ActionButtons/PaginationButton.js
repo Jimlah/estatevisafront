@@ -1,4 +1,3 @@
-import { GrNext, GrPrevious } from "react-icons/gr";
 import { IconContext } from "react-icons/lib";
 import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
 
