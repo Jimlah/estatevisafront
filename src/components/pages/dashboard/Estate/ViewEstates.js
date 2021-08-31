@@ -1,14 +1,24 @@
 import { Estate } from "./../../../../services/estate.services";
-
 import Logo from "../../../miscellaneous/Logo";
 import Table from "./../../../table/Table";
+
 const ViewEstates = () => {
-  const headings = ["Logo", "Name", "Code", "Owner", "Actions"];
+  const headings = ["Name", "Code", "Owner", "Created At", "Actions"];
+
+  const NameLogo = (name, url) => {
+    return (
+      <div className="flex items-center justify-start space-x-2 font-semibold">
+        <Logo url={url} />
+        <span>{name}</span>
+      </div>
+    );
+  };
+
   const column = [
-    (item) => Logo({ url: item.logo }),
-    (item) => item.name,
+    (item) => NameLogo(item.name, item.logo),
     (item) => item.code,
     (item) => item.user?.profile?.firstname ?? "UnKnown",
+    (item) => item.created_at,
   ];
 
   return (
