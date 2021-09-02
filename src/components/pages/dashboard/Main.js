@@ -8,6 +8,14 @@ import { useState } from "react";
 import ViewHouses from "./Houses/ViewHouses";
 import EstateMain from "./Estate/EstateMain";
 import EmailVerifyWarning from "../../notifications/EmailVerifyWarning";
+import {
+  SUPER_ADMIN,
+  ADMIN,
+  ESTATE_OWNER,
+  ESTATE_ADMIN,
+  HOUSE_OWNER,
+  HOUSE_SUB_OWNER,
+} from "../../../constants/RolesConstant";
 
 const Main = () => {
   const [searchData, setSearchData] = useState([]);
@@ -27,16 +35,46 @@ const Main = () => {
               {location.pathname}
             </span>
             <Switch>
-              <PrivateRoute path="/dashboard/estates" component={EstateMain} />
+              <PrivateRoute
+                path="/dashboard/estates"
+                rights={[
+                  SUPER_ADMIN,
+                  ADMIN,
+                  ESTATE_OWNER,
+                  ESTATE_ADMIN,
+                  HOUSE_OWNER,
+                  HOUSE_SUB_OWNER,
+                ]}
+                component={EstateMain}
+              />
               <PrivateRoute
                 path="/dashboard/houses"
                 component={ViewHouses}
+                rights={[
+                  SUPER_ADMIN,
+                  ADMIN,
+                  ESTATE_OWNER,
+                  ESTATE_ADMIN,
+                  HOUSE_OWNER,
+                  HOUSE_SUB_OWNER,
+                ]}
                 exact
               />
             </Switch>
           </div>
           <Switch>
-            <PrivateRoute path="/dashboard/logout" component={Logout} />
+            <PrivateRoute
+              path="/dashboard/logout"
+              rights={[
+                SUPER_ADMIN,
+                ADMIN,
+                ESTATE_OWNER,
+                ESTATE_ADMIN,
+                HOUSE_OWNER,
+                HOUSE_SUB_OWNER,
+              ]}
+              component={Logout}
+            />
           </Switch>
         </main>
       </div>
