@@ -7,6 +7,7 @@ import { SearchContext } from "../../../context/SearchContext";
 import { useState } from "react";
 import ViewHouses from "./Houses/ViewHouses";
 import EstateMain from "./Estate/EstateMain";
+import EmailVerifyWarning from "../../notifications/EmailVerifyWarning";
 
 const Main = () => {
   const [searchData, setSearchData] = useState([]);
@@ -20,6 +21,7 @@ const Main = () => {
         <Sidebar />
         <main className="w-full overflow-hidden h-full max-h-full mb-10">
           <TopBar />
+          <EmailVerifyWarning />
           <div className="px-2 sm:px-5 py-3 w-full h-full flex items-start justify-start flex-col overflow-y-auto">
             <span className="text-gray-500 text-xs mb-2 font-semibold dark:text-gray-200">
               {location.pathname}

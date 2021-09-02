@@ -13,7 +13,7 @@ const useFetch = (func = () => {}, id = null) => {
     async function fetchData() {
       const res = await func(id);
 
-      if (res.data) {
+      if (res?.data) {
         setData(res.data);
       }
 

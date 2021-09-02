@@ -3,15 +3,30 @@ import { useContext, useEffect } from "react";
 import { removeUserSession } from "../../../utils/common";
 import { UserContext } from "./../../../context/UserContext";
 import { Auth } from "./../../../services/auth.services";
+import { AlertContext } from "./../../../context/AlertContext";
 const Logout = () => {
   const history = useHistory();
   const { setUser } = useContext(UserContext);
+  const { setMessage, setErrors, setStatus } = useContext(AlertContext);
 
   useEffect(() => {
-    setTimeout(() => {
-      Auth.logOut();
-      removeUserSession();
+    setTimeout(async () => {
+      const res = await Auth.logOut();
       setUser(null);
+      removeUserSession();
+      setMessage(null);
+      setErrors(null);
+      setStatus(null);
+      if (res.status) {
+        setStatus(res.status);
+      }
+      if (res.message) {
+        setMessage(res.message);
+      }
+      if (res.errors) {
+        setErrors(res.errors);
+      }
+
       history.push("/auth/login");
     }, 1000);
 

@@ -3,9 +3,10 @@ const getAll = async () => {
   var resp = {};
   try {
     const response = await http.get("/houses");
-    resp = response.data;
+    // console.log(response);
+    resp = response?.data;
   } catch (e) {
-    resp = e.resp.data ?? null;
+    resp = e.response.data ?? null;
   }
   return resp;
 };
@@ -14,9 +15,9 @@ const destroy = async (id) => {
   var resp = {};
   try {
     const response = await http.delete(`/houses/${id}`);
-    resp = response.data;
+    resp = response?.data;
   } catch (e) {
-    resp = e.resp.data ?? null;
+    resp = e.response.data ?? null;
   }
   return resp;
 };

@@ -35,7 +35,7 @@ const CreateEstates = () => {
     setStatus(res?.status ?? null);
 
     if (res?.status === "success") {
-      history.push = "/dashboard/estates";
+      history.push("/dashboard/estates");
     }
   };
 

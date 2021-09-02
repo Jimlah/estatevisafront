@@ -39,7 +39,10 @@ const App = () => {
             <Alert
               message={message}
               status={status}
-              handleClick={() => setMessage(null)}
+              handleClick={() => {
+                setMessage(null);
+                setStatus(null);
+              }}
             />
           )}
           <Root />
