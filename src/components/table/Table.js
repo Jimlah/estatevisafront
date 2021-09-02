@@ -34,7 +34,7 @@ const Table = ({ fetcher, headings, columns, view, edit, destroy, create }) => {
 
   return (
     <div className="bg-white bg-opacity-75 p-5 dark:bg-opacity-10 rounded-md shadow w-full flex flex-col space-y-3">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between flex-wrap">
         {create && (
           <Link
             to={create}
@@ -43,14 +43,14 @@ const Table = ({ fetcher, headings, columns, view, edit, destroy, create }) => {
             <span>
               <AiOutlinePlus />
             </span>
-            <span>Add New</span>
+            <span>New</span>
           </Link>
         )}
         <div className="flex items-center justify-end space-x-3">
-          <button className="px-3 py-2 bg-blue-500 hover:bg-blue-700 rounded-md text-white font-bold text-sm">
+          <button className="px-3 py-2 bg-blue-500 hover:bg-blue-700 rounded-md text-white font-bold text-xs sm:text-sm ">
             Import
           </button>
-          <button className="px-3 py-2 bg-red-500 hover:bg-red-700 rounded-md text-white font-bold text-sm">
+          <button className="px-3 py-2 bg-red-500 hover:bg-red-700 rounded-md text-white font-bold text-xs sm:text-sm">
             Export
           </button>
         </div>

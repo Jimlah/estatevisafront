@@ -34,8 +34,20 @@ const logOut = async () => {
   return resp;
 };
 
+const resendVerification = async () => {
+  var resp = {};
+  try {
+    const response = await http.post("/email/verification-notification  ");
+    return response.data;
+  } catch (error) {
+    resp = error.response.data ?? null;
+  }
+  return resp;
+};
+
 export const Auth = {
   login,
   forgotPassword,
   logOut,
+  resendVerification,
 };
