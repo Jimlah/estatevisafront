@@ -5,6 +5,14 @@ import { useState } from "react";
 import mobile from "../../assets/img/mobile.png";
 import { IoLogoGooglePlaystore, IoLogoApple } from "react-icons/io5";
 import { IconContext } from "react-icons/lib";
+import {
+  ADMIN,
+  ESTATE_ADMIN,
+  HOUSE_OWNER,
+  HOUSE_SUB_OWNER,
+  SUPER_ADMIN,
+} from "../../constants/RolesConstant";
+import { ESTATE_OWNER } from "./../../constants/RolesConstant";
 
 const Sidebar = () => {
   const [hide, setHide] = useState(true);
@@ -31,18 +39,35 @@ const Sidebar = () => {
             icon={<MdDashboard />}
             name="dashboard"
             hide={hide}
+            rights={[
+              SUPER_ADMIN,
+              ADMIN,
+              ESTATE_OWNER,
+              ESTATE_ADMIN,
+              HOUSE_OWNER,
+              HOUSE_SUB_OWNER,
+            ]}
           />
           <NavItem
             to="/dashboard/estates"
             icon={<BiBuildingHouse />}
             name="Estates"
             hide={hide}
+            rights={[SUPER_ADMIN, ADMIN]}
           />
           <NavItem
             to="/dashboard/houses"
             icon={<BiHomeAlt />}
             name="Houses"
             hide={hide}
+            rights={[
+              SUPER_ADMIN,
+              ADMIN,
+              ESTATE_OWNER,
+              ESTATE_ADMIN,
+              HOUSE_OWNER,
+              HOUSE_SUB_OWNER,
+            ]}
           />
         </div>
         <NavItem
@@ -50,6 +75,14 @@ const Sidebar = () => {
           icon={<BiLogOut />}
           name="logout"
           hide={hide}
+          rights={[
+            SUPER_ADMIN,
+            ADMIN,
+            ESTATE_OWNER,
+            ESTATE_ADMIN,
+            HOUSE_OWNER,
+            HOUSE_SUB_OWNER,
+          ]}
         />
       </div>
       {!hide && (
