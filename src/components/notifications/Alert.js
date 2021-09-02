@@ -77,7 +77,7 @@ const Alert = ({ message, handleClick, status }) => {
 
   return (
     <div
-      className={`absolute top-0 right-0 mr-5 mt-5 ${bgStyle} border ${borderStyle}  text-gray-900 rounded px-2 py-1 shadow-md font-medium tracking-wider text-xs z-50`}
+      className={`absolute top-0 right-0 mr-5 mt-5 ${bgStyle} border ${borderStyle}  text-gray-900 rounded px-2 py-1 shadow-md font-medium tracking-wider text-xs`}
     >
       <div className="flex items-center space-x-2">
         {type}
