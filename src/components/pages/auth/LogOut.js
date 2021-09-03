@@ -14,26 +14,18 @@ const Logout = () => {
       const res = await Auth.logOut();
       setUser(null);
       removeUserSession();
-      setMessage(null);
-      setErrors(null);
-      setStatus(null);
-      if (res.status) {
-        setStatus(res.status);
-      }
-      if (res.message) {
-        setMessage(res.message);
-      }
-      if (res.errors) {
-        setErrors(res.errors);
-      }
-
-      history.push("/auth/login");
+      setStatus(res.status);
+      setMessage(res.message);
+      setErrors(res.errors);
     }, 1000);
+
+    history.push("/auth/login");
 
     return () => {
       setUser(null);
     };
-  }, [history, setUser]);
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <div className="absolute z-50 top-0 left-0 h-screen w-full flex items-center justify-center">
