@@ -60,22 +60,21 @@ const Main = () => {
                 ]}
                 exact
               />
+              <PrivateRoute
+                path="/dashboard/logout"
+                rights={[
+                  SUPER_ADMIN,
+                  ADMIN,
+                  ESTATE_OWNER,
+                  ESTATE_ADMIN,
+                  HOUSE_OWNER,
+                  HOUSE_SUB_OWNER,
+                ]}
+                component={Logout}
+                exact
+              />
             </Switch>
           </div>
-          <Switch>
-            <PrivateRoute
-              path="/dashboard/logout"
-              rights={[
-                SUPER_ADMIN,
-                ADMIN,
-                ESTATE_OWNER,
-                ESTATE_ADMIN,
-                HOUSE_OWNER,
-                HOUSE_SUB_OWNER,
-              ]}
-              component={Logout}
-            />
-          </Switch>
         </main>
       </div>
     </SearchContext.Provider>
