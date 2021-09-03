@@ -11,8 +11,12 @@ const BaseAuth = () => {
     >
       <div className="flex items-center justify-center h-screen px-10 overflow-hidden">
         <Switch>
-          <Route path="/auth/login" component={Login} />
-          <Route path="/auth/forgot-password" component={ForgotPassword} />
+          <Route path="/auth/login" exact component={Login} />
+          <Route
+            path="/auth/forgot-password"
+            exact
+            component={ForgotPassword}
+          />
         </Switch>
       </div>
     </div>
