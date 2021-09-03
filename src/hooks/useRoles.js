@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getUser } from "./../utils/common";
 
 const useRoles = (rights) => {
-  const [roles, setRoles] = useState(getUser()?.user.roles);
+  const roles = getUser()?.user.roles;
   const [result, setResult] = useState(false);
 
   useEffect(() => {
