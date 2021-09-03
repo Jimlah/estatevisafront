@@ -4,12 +4,14 @@ import Alert from "./components/notifications/Alert";
 import { UserContext } from "./context/UserContext";
 import Root from "./components/pages/layout/Root";
 import { getUser } from "./utils/common";
+import { useHistory } from "react-router-dom";
 
 const App = () => {
   const [message, setMessage] = useState(null);
   const [errors, setErrors] = useState(null);
   const [user, setUser] = useState(null);
   const [status, setStatus] = useState(null);
+  const history = useHistory();
 
   const initialUserState = { user, setUser };
   const initialAlertState = {
@@ -25,11 +27,16 @@ const App = () => {
     if (getUser() !== null) {
       setUser(getUser());
     }
+    history.push("/auth/login");
+
+    if (getUser() === null) {
+      setUser(null);
+    }
 
     return () => {
       setUser(null);
     };
-  }, []);
+  }, [history]);
 
   return (
     <div>
@@ -42,6 +49,7 @@ const App = () => {
               handleClick={() => {
                 setMessage(null);
                 setStatus(null);
+                setErrors(null);
               }}
             />
           )}
