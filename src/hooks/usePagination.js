@@ -20,6 +20,7 @@ const usePagination = (data) => {
   };
 
   useEffect(() => {
+    setPageData([]);
     var ceil = Math.ceil;
 
     /*eslint no-extend-native: ["error", { "exceptions": ["Array"] }]*/
@@ -44,7 +45,14 @@ const usePagination = (data) => {
     }
   }, [chunkedData, currentPage]);
 
-  return { pageData, currentPage, handleNext, handlePrev, setCurrentPage };
+  return {
+    pageData,
+    currentPage,
+    handleNext,
+    handlePrev,
+    setCurrentPage,
+    setPageData,
+  };
 };
 
 export default usePagination;
