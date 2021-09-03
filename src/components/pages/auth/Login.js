@@ -20,24 +20,14 @@ const Login = () => {
     e.preventDefault();
     setIsLoading(true);
     const formData = { email, password };
-    const res = await Auth.login(JSON.stringify(formData));
-    setMessage(null);
-    setErrors(null);
-    setStatus(null);
-    if (res.status) {
-      setStatus(res.status);
-    }
-    if (res.message) {
-      setMessage(res.message);
-    }
-    if (res.errors) {
-      setErrors(res.errors);
-    }
-    if (res.token) {
-      setUserSession(JSON.stringify(res));
-      setUser(res);
-      setIsLoading(false);
-    }
+    const res = await Auth.login(formData);
+    setStatus(res.status);
+    setMessage(res.message);
+    setErrors(res.errors);
+    setUser(res);
+    setUserSession(JSON.stringify(res));
+
+    setIsLoading(false);
     history.push("/dashboard");
   };
 
