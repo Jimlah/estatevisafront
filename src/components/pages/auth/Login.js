@@ -24,12 +24,15 @@ const Login = () => {
     setStatus(res.status);
     setMessage(res.message);
     setErrors(res.errors);
-    setUser(res);
-    setUserSession(JSON.stringify(res));
+    if (res.status === "success") {
+      setUser(res);
+      setUserSession(JSON.stringify(res));
+      history.push("/dashboard");
+    }
 
     setIsLoading(false);
-    history.push("/dashboard");
   };
+
 
   useEffect(() => {
     return () => {
