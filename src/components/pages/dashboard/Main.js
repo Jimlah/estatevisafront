@@ -46,6 +46,7 @@ const Main = () => {
                   HOUSE_SUB_OWNER,
                 ]}
                 component={EstateMain}
+                exact
               />
               <PrivateRoute
                 path="/dashboard/houses"

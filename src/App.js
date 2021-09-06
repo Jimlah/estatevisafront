@@ -24,18 +24,20 @@ const App = () => {
   };
 
   useEffect(() => {
-    if (getUser() !== null) {
+    if (getUser() !== null && user === null) {
       setUser(getUser());
     }
-    history.push("/auth/login");
 
     if (getUser() === null) {
       setUser(null);
+      history.push("/auth/login");
     }
 
     return () => {
       setUser(null);
+      history.push("/auth/login");
     };
+    // eslint-disable-next-line
   }, [history]);
 
   return (
