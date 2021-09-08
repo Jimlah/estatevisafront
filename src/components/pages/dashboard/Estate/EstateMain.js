@@ -10,10 +10,11 @@ import {
   HOUSE_OWNER,
   HOUSE_SUB_OWNER,
 } from "../../../../constants/RolesConstant";
+import ShowEstate from "./ShowEstate";
 
 const EstateMain = () => {
   return (
-    <>
+    <div className="w-full">
       <Switch>
         <PrivateRoute
           path="/dashboard/estates"
@@ -42,6 +43,19 @@ const EstateMain = () => {
           ]}
         />
         <PrivateRoute
+          path="/dashboard/estates/:id"
+          component={ShowEstate}
+          exact
+          rights={[
+            SUPER_ADMIN,
+            ADMIN,
+            ESTATE_OWNER,
+            ESTATE_ADMIN,
+            HOUSE_OWNER,
+            HOUSE_SUB_OWNER,
+          ]}
+        />
+        <PrivateRoute
           path="/dashboard/estates/:id/edit"
           component={CreateEstates}
           exact
@@ -55,7 +69,7 @@ const EstateMain = () => {
           ]}
         />
       </Switch>
-    </>
+    </div>
   );
 };
 
