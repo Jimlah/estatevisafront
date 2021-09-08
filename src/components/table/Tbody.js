@@ -8,7 +8,7 @@ const Tbody = ({ data, column, setDeleteId, view = true, edit = true }) => {
 
   const action = (id) => {
     return (
-      <div className="flex space-x-1.5 items-center justify-start">
+      <div className="flex space-x-1.5 justify-start items-center">
         {view && <ViewButton id={id} />}
         {edit && <EditButton id={id} />}
         {setDeleteId && (

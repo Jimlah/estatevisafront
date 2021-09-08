@@ -12,11 +12,13 @@ const getAll = async () => {
 
 const getById = async (id) => {
   var resp = {};
-  try {
-    const response = await http.get(`/estates/${id}`);
-    resp = response.data;
-  } catch (e) {
-    resp = e.response.data ?? null;
+  if (id) {
+    try {
+      const response = await http.get(`/estates/${id}`);
+      resp = response.data;
+    } catch (e) {
+      resp = e.response.data ?? null;
+    }
   }
   return resp;
 };
