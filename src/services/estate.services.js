@@ -3,7 +3,6 @@ const getAll = async () => {
   var resp = {};
   try {
     const response = await http.get("/estates");
-    console.log(response);
     resp = response.data;
   } catch (e) {
     resp = e.response.data ?? null;

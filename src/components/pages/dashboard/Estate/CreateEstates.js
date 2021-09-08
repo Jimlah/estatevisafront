@@ -57,6 +57,8 @@ const CreateEstates = () => {
     setFirstname(data?.user?.profile?.firstname ?? "");
     setLastname(data?.user?.profile?.lastname ?? "");
     setPhone(data?.user?.profile?.phone_number ?? "");
+
+    // eslint-disable-next-line
   }, [data]);
 
   return (

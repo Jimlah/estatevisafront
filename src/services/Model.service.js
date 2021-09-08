@@ -1,5 +1,4 @@
 import http from "./base.services";
-
 class Model {
   constructor() {
     this.path = {};

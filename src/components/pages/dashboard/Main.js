@@ -4,7 +4,7 @@ import TopBar from "../../navigation/TopBar";
 import Logout from "../auth/LogOut";
 import PrivateRoute from "./../../Routes/PrivateRoute";
 import { SearchContext } from "../../../context/SearchContext";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ViewHouses from "./Houses/ViewHouses";
 import EstateMain from "./Estate/EstateMain";
 import EmailVerifyWarning from "../../notifications/EmailVerifyWarning";

@@ -1,8 +1,26 @@
 import Col from "./Col";
 import DeleteButton from "../ActionButtons/DeleteButton";
+import EditButton from "./../ActionButtons/EditButton";
+import ViewButton from "../ActionButtons/ViewButton";
 
-const Tbody = ({ data, column, setDeleteId }) => {
+const Tbody = ({ data, column, setDeleteId, view = true, edit = true }) => {
   // map an array of objects to an array of trs
+
+  const action = (id) => {
+    return (
+      <div className="flex space-x-1.5 items-center justify-start">
+        {view && <ViewButton id={id} />}
+        {edit && <EditButton id={id} />}
+        {setDeleteId && (
+          <DeleteButton
+            handleDelete={() => {
+              setDeleteId(id);
+            }}
+          />
+        )}
+      </div>
+    );
+  };
 
   return (
     <tbody>
@@ -12,17 +30,7 @@ const Tbody = ({ data, column, setDeleteId }) => {
             {column?.map((item, index) => (
               <Col children={item(estate)} key={index} />
             ))}
-            {setDeleteId && (
-              <Col
-                children={
-                  <DeleteButton
-                    handleDelete={() => {
-                      setDeleteId(estate.id);
-                    }}
-                  />
-                }
-              />
-            )}
+            <Col children={action(estate.id)} />
           </tr>
         ))
       ) : (

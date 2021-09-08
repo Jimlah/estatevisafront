@@ -58,7 +58,7 @@ const Table = ({ fetcher, headings, columns, view, edit, destroy, create }) => {
       <div className="w-full overflow-x-auto overflow-y-auto h-full font-mono">
         <table className="table-auto w-full relative">
           <Thead headings={headings} />
-          <Tbody data={pageData} column={columns} setDeleteId={setDeleteId} />
+          <Tbody data={pageData} column={columns} setDeleteId={setDeleteId} edit={true} view={true} />
         </table>
       </div>
       <PaginationButton
