@@ -3,6 +3,18 @@ const getAll = async () => {
   var resp = {};
   try {
     const response = await http.get("/estates");
+    console.log(response);
+    resp = response.data;
+  } catch (e) {
+    resp = e.response.data ?? null;
+  }
+  return resp;
+};
+
+const getById = async (id) => {
+  var resp = {};
+  try {
+    const response = await http.get(`/estates/${id}`);
     resp = response.data;
   } catch (e) {
     resp = e.response.data ?? null;
@@ -14,6 +26,17 @@ const create = async (data) => {
   var resp = {};
   try {
     const response = await http.post("/estates", data);
+    resp = response.data;
+  } catch (e) {
+    resp = e.response.data ?? null;
+  }
+  return resp;
+};
+
+const update = async (id, data) => {
+  var resp = {};
+  try {
+    const response = await http.put(`/estates/${id}`, data);
     resp = response.data;
   } catch (e) {
     resp = e.response.data ?? null;
@@ -34,6 +57,8 @@ const destroy = async (id) => {
 
 export const Estate = {
   getAll,
-  destroy,
+  getById,
   create,
+  update,
+  destroy,
 };

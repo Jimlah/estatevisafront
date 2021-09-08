@@ -2,18 +2,21 @@ import Input from "./../../../form/Input";
 import useInput from "./../../../../hooks/useInput";
 import SubmitButton from "./../../../form/SubmitButton";
 import { Estate } from "../../../../services/estate.services";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AlertContext } from "./../../../../context/AlertContext";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
+import useFetch from "./../../../../hooks/useFetch";
 const CreateEstates = () => {
-  const [email, bindEmail] = useInput("");
-  const [estate_name, bindEstate] = useInput("");
-  const [estate_code, bindCode] = useInput("");
-  const [firstname, bindFirstname] = useInput("");
-  const [lastname, bindLastname] = useInput("");
-  const [phone_number, bindPhone] = useInput("");
+  const [email, bindEmail, setEmail] = useInput("");
+  const [estate_name, bindEstate, setEstate] = useInput("");
+  const [estate_code, bindCode, setCode] = useInput("");
+  const [firstname, bindFirstname, setFirstname] = useInput("");
+  const [lastname, bindLastname, setLastname] = useInput("");
+  const [phone_number, bindPhone, setPhone] = useInput("");
   const { errors, setErrors, setMessage, setStatus } = useContext(AlertContext);
   const history = useHistory();
+
+  let { id } = useParams();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,10 +28,15 @@ const CreateEstates = () => {
       lastname,
       phone_number,
     };
-    const res = await Estate.create(formData);
-    setErrors(null);
-    setMessage(null);
-    setStatus(null);
+
+    let res;
+    if (!id) {
+      res = await Estate.create(formData);
+    }
+
+    if (id) {
+      res = await Estate.update(id, formData);
+    }
 
     setErrors(res?.errors ?? null);
     setMessage(res?.message ?? null);
@@ -39,9 +47,21 @@ const CreateEstates = () => {
     }
   };
 
+  const { data, error } = useFetch(Estate.getById, id);
+
+  useEffect(() => {
+    setMessage(error);
+    setEmail(data?.user.email ?? "");
+    setEstate(data?.name ?? "");
+    setCode(data?.code ?? "");
+    setFirstname(data?.user?.profile?.firstname ?? "");
+    setLastname(data?.user?.profile?.lastname ?? "");
+    setPhone(data?.user?.profile?.phone_number ?? "");
+  }, [data]);
+
   return (
-    <div className="flex flex-col items-center justify-start w-full h-full mb-10">
-      <div className="bg-white bg-opacity-75 p-5 dark:bg-opacity-10 rounded-md shadow w-full flex flex-col space-y-3 w-full max-w-lg overflow-y-auto h-full">
+    <div className="flex flex-col items-center justify-start w-full h-full">
+      <div className="bg-white bg-opacity-75 p-5 dark:bg-opacity-10 rounded-md shadow w-full flex flex-col space-y-3 w-full max-w-lg">
         <span className="text-sm font-bold text-gray-500">Estate</span>
         <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-5">
           <Input

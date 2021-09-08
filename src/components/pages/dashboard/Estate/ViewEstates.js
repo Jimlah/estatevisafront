@@ -1,6 +1,6 @@
-import { Estate } from "./../../../../services/estate.services";
 import Logo from "../../../miscellaneous/Logo";
 import Table from "./../../../table/Table";
+import { Estate } from "./../../../../services/estate.services";
 
 const ViewEstates = () => {
   const headings = ["Name", "Code", "Owner", "Created At", "Actions"];

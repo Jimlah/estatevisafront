@@ -41,6 +41,19 @@ const EstateMain = () => {
             HOUSE_SUB_OWNER,
           ]}
         />
+        <PrivateRoute
+          path="/dashboard/estates/:id/edit"
+          component={CreateEstates}
+          exact
+          rights={[
+            SUPER_ADMIN,
+            ADMIN,
+            ESTATE_OWNER,
+            ESTATE_ADMIN,
+            HOUSE_OWNER,
+            HOUSE_SUB_OWNER,
+          ]}
+        />
       </Switch>
     </>
   );

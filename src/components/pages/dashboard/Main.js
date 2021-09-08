@@ -4,7 +4,7 @@ import TopBar from "../../navigation/TopBar";
 import Logout from "../auth/LogOut";
 import PrivateRoute from "./../../Routes/PrivateRoute";
 import { SearchContext } from "../../../context/SearchContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ViewHouses from "./Houses/ViewHouses";
 import EstateMain from "./Estate/EstateMain";
 import EmailVerifyWarning from "../../notifications/EmailVerifyWarning";
@@ -27,16 +27,17 @@ const Main = () => {
     <SearchContext.Provider value={initialState}>
       <div className="h-screen flex border items-start justify-start w-full bg-gray-200 dark:bg-gray-900 dark:bg-opacity-75">
         <Sidebar />
-        <main className="w-full overflow-hidden h-full max-h-full mb-10">
+        <main className="w-full overflow-hidden h-full max-h-full mb-10 flex flex-col ">
           <TopBar />
           <EmailVerifyWarning />
-          <div className="px-2 sm:px-5 py-3 w-full h-full flex items-start justify-start flex-col overflow-y-auto">
+          <div className="px-2 sm:px-5 w-full h-full flex items-start justify-start flex-col overflow-y-auto py-5">
             <span className="text-gray-500 text-xs mb-2 font-semibold dark:text-gray-200">
               {location.pathname}
             </span>
             <Switch>
               <PrivateRoute
                 path="/dashboard/estates"
+                component={EstateMain}
                 rights={[
                   SUPER_ADMIN,
                   ADMIN,
@@ -45,8 +46,6 @@ const Main = () => {
                   HOUSE_OWNER,
                   HOUSE_SUB_OWNER,
                 ]}
-                component={EstateMain}
-                exact
               />
               <PrivateRoute
                 path="/dashboard/houses"
@@ -59,7 +58,6 @@ const Main = () => {
                   HOUSE_OWNER,
                   HOUSE_SUB_OWNER,
                 ]}
-                exact
               />
               <PrivateRoute
                 path="/dashboard/logout"
