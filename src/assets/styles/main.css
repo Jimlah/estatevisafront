@@ -1,4 +1,4 @@
-/*! tailwindcss v2.2.12 | MIT License | https://tailwindcss.com */
+/*! tailwindcss v2.2.15 | MIT License | https://tailwindcss.com */
 
 /*! modern-normalize v1.1.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
 
@@ -688,16 +688,16 @@ video {
   height: 1rem;
 }
 
+.h-5 {
+  height: 1.25rem;
+}
+
 .h-6 {
   height: 1.5rem;
 }
 
 .h-screen {
   height: 100vh;
-}
-
-.h-5 {
-  height: 1.25rem;
 }
 
 .h-full {
@@ -724,16 +724,16 @@ video {
   width: 1rem;
 }
 
+.w-5 {
+  width: 1.25rem;
+}
+
 .w-full {
   width: 100%;
 }
 
 .w-6 {
   width: 1.5rem;
-}
-
-.w-5 {
-  width: 1.25rem;
 }
 
 .w-1\/2 {
@@ -1286,6 +1286,11 @@ video {
   color: rgba(239, 68, 68, var(--tw-text-opacity));
 }
 
+.text-green-500 {
+  --tw-text-opacity: 1;
+  color: rgba(16, 185, 129, var(--tw-text-opacity));
+}
+
 .text-gray-50 {
   --tw-text-opacity: 1;
   color: rgba(249, 250, 251, var(--tw-text-opacity));
@@ -1296,14 +1301,14 @@ video {
   color: rgba(17, 24, 39, var(--tw-text-opacity));
 }
 
-.text-gray-500 {
-  --tw-text-opacity: 1;
-  color: rgba(107, 114, 128, var(--tw-text-opacity));
-}
-
 .text-blue-500 {
   --tw-text-opacity: 1;
   color: rgba(59, 130, 246, var(--tw-text-opacity));
+}
+
+.text-gray-500 {
+  --tw-text-opacity: 1;
+  color: rgba(107, 114, 128, var(--tw-text-opacity));
 }
 
 .text-indigo-500 {
@@ -1314,11 +1319,6 @@ video {
 .text-gray-700 {
   --tw-text-opacity: 1;
   color: rgba(55, 65, 81, var(--tw-text-opacity));
-}
-
-.text-green-500 {
-  --tw-text-opacity: 1;
-  color: rgba(16, 185, 129, var(--tw-text-opacity));
 }
 
 .text-yellow-500 {
@@ -1405,6 +1405,16 @@ video {
   color: rgba(185, 28, 28, var(--tw-text-opacity));
 }
 
+.hover\:text-green-700:hover {
+  --tw-text-opacity: 1;
+  color: rgba(4, 120, 87, var(--tw-text-opacity));
+}
+
+.hover\:text-blue-700:hover {
+  --tw-text-opacity: 1;
+  color: rgba(29, 78, 216, var(--tw-text-opacity));
+}
+
 .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgba(255, 255, 255, var(--tw-text-opacity));
@@ -1423,16 +1433,6 @@ video {
 .hover\:text-indigo-500:hover {
   --tw-text-opacity: 1;
   color: rgba(99, 102, 241, var(--tw-text-opacity));
-}
-
-.hover\:text-blue-700:hover {
-  --tw-text-opacity: 1;
-  color: rgba(29, 78, 216, var(--tw-text-opacity));
-}
-
-.hover\:text-green-700:hover {
-  --tw-text-opacity: 1;
-  color: rgba(4, 120, 87, var(--tw-text-opacity));
 }
 
 .focus\:outline-none:focus {
@@ -1511,10 +1511,6 @@ video {
   .sm\:max-w-max {
     max-width: -webkit-max-content;
     max-width: max-content;
-  }
-
-  .sm\:grid-cols-2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .sm\:px-10 {
