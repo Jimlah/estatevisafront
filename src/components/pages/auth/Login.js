@@ -30,6 +30,7 @@ const Login = () => {
       setUserSession(JSON.stringify(res));
       history.push("/dashboard");
     }
+    setPageLoader(false);
   };
 
   useEffect(() => {

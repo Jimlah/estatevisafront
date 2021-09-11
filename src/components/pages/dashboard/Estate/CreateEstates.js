@@ -4,7 +4,7 @@ import SubmitButton from "./../../../form/SubmitButton";
 import { Estate } from "../../../../services/estate.services";
 import { useContext, useEffect } from "react";
 import { AlertContext } from "./../../../../context/AlertContext";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useFetch from "./../../../../hooks/useFetch";
 import { PageLoaderContext } from "../../../../context/PageLoaderContext";
 const CreateEstates = () => {
@@ -16,7 +16,6 @@ const CreateEstates = () => {
   const [phone_number, bindPhone, setPhone] = useInput("");
   const { errors, setErrors, setMessage, setStatus } = useContext(AlertContext);
   const { submitLoader, setSubmitLoader } = useContext(PageLoaderContext);
-  const history = useHistory();
 
   let { id } = useParams();
 
@@ -40,7 +39,6 @@ const CreateEstates = () => {
     if (id) {
       res = await Estate.update(id, formData);
     }
-    console.log(res);
 
     setErrors(res?.errors ?? null);
     setMessage(res?.message ?? null);

@@ -28,9 +28,9 @@ const Logout = () => {
   }, []);
 
   return (
-    <div className="absolute z-50 top-0 left-0 h-screen w-full flex items-center justify-center">
-      <div className="bg-white p-5 rounded-md shadow flex items-center center space-x-3 text-gray-500 bg-opacity-50">
-        <span className="p-5 rounded-full border-2 border-b-0 animate-spin border-indigo-500"></span>
+    <div className="absolute top-0 left-0 z-50 flex items-center justify-center w-full h-screen">
+      <div className="flex items-center p-5 space-x-3 text-gray-500 bg-white bg-opacity-50 rounded-md shadow center">
+        <span className="p-5 border-2 border-b-0 border-indigo-500 rounded-full animate-spin"></span>
         <span>Logging out</span>
       </div>
     </div>
