@@ -1,7 +1,7 @@
 const PageLoader = ({ isLoading }) => {
   return (
     <div
-      className={`absolute flex flex-col items-center justify-center w-full h-screen bg-gray-900 ${
+      className={`absolute flex flex-col items-center justify-center w-full h-screen bg-gray-900 z-50 ${
         isLoading ? "" : "hidden"
       }`}
     >

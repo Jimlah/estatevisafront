@@ -4,7 +4,7 @@ import TopBar from "../../navigation/TopBar";
 import Logout from "../auth/LogOut";
 import PrivateRoute from "./../../Routes/PrivateRoute";
 import { SearchContext } from "../../../context/SearchContext";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ViewHouses from "./Houses/ViewHouses";
 import EstateMain from "./Estate/EstateMain";
 import EmailVerifyWarning from "../../notifications/EmailVerifyWarning";
@@ -16,22 +16,32 @@ import {
   HOUSE_OWNER,
   HOUSE_SUB_OWNER,
 } from "../../../constants/RolesConstant";
+import { PageLoaderContext } from "../../../context/PageLoaderContext";
 
 const Main = () => {
   const [searchData, setSearchData] = useState([]);
   const [result, setResult] = useState(searchData);
   const initialState = { searchData, setSearchData, result, setResult };
   const location = useLocation();
+  const { setPageLoader } = useContext(PageLoaderContext);
+
+  useEffect(() => {
+    setPageLoader(true);
+    setTimeout(() => {
+      setPageLoader(false);
+    }, 1000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <SearchContext.Provider value={initialState}>
-      <div className="h-screen flex border items-start justify-start w-full bg-gray-200 dark:bg-gray-900 dark:bg-opacity-75">
+      <div className="flex items-start justify-start w-full h-screen bg-gray-200 border dark:bg-gray-900 dark:bg-opacity-75">
         <Sidebar />
-        <main className="w-full overflow-hidden h-full max-h-full mb-10 flex flex-col ">
+        <main className="flex flex-col w-full h-full max-h-full mb-10 overflow-hidden ">
           <TopBar />
           <EmailVerifyWarning />
-          <div className="px-2 sm:px-5 w-full h-full flex items-start justify-start flex-col overflow-y-auto py-5">
-            <span className="text-gray-500 text-xs mb-2 font-semibold dark:text-gray-200">
+          <div className="flex flex-col items-start justify-start w-full h-full px-2 py-5 overflow-y-auto sm:px-5">
+            <span className="mb-2 text-xs font-semibold text-gray-500 dark:text-gray-200">
               {location.pathname}
             </span>
             <Switch>
