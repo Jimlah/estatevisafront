@@ -6,6 +6,7 @@ import { useContext, useEffect } from "react";
 import { AlertContext } from "./../../../../context/AlertContext";
 import { useHistory, useParams } from "react-router-dom";
 import useFetch from "./../../../../hooks/useFetch";
+import { PageLoaderContext } from "../../../../context/PageLoaderContext";
 const CreateEstates = () => {
   const [email, bindEmail, setEmail] = useInput("");
   const [estate_name, bindEstate, setEstate] = useInput("");
@@ -14,11 +15,13 @@ const CreateEstates = () => {
   const [lastname, bindLastname, setLastname] = useInput("");
   const [phone_number, bindPhone, setPhone] = useInput("");
   const { errors, setErrors, setMessage, setStatus } = useContext(AlertContext);
+  const { submitLoader, setSubmitLoader } = useContext(PageLoaderContext);
   const history = useHistory();
 
   let { id } = useParams();
 
   const handleSubmit = async (e) => {
+    setSubmitLoader(true);
     e.preventDefault();
     const formData = {
       email,
@@ -37,14 +40,13 @@ const CreateEstates = () => {
     if (id) {
       res = await Estate.update(id, formData);
     }
+    console.log(res);
 
     setErrors(res?.errors ?? null);
     setMessage(res?.message ?? null);
     setStatus(res?.status ?? null);
 
-    if (res?.status === "success") {
-      history.push("/dashboard/estates");
-    }
+    setSubmitLoader(false);
   };
 
   const { data, error } = useFetch(Estate.getById, id);
@@ -63,7 +65,7 @@ const CreateEstates = () => {
 
   return (
     <div className="flex flex-col items-center justify-start w-full h-full">
-      <div className="bg-white bg-opacity-75 p-5 dark:bg-opacity-10 rounded-md shadow w-full flex flex-col space-y-3 w-full max-w-lg">
+      <div className="flex flex-col w-full max-w-lg p-5 space-y-3 bg-white bg-opacity-75 rounded-md shadow dark:bg-opacity-10">
         <span className="text-sm font-bold text-gray-500">Estate</span>
         <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-5">
           <Input
@@ -109,7 +111,7 @@ const CreateEstates = () => {
             bind={bindPhone}
             error={errors?.phone_number}
           />
-          <SubmitButton />
+          <SubmitButton isLoading={submitLoader} />
         </form>
       </div>
     </div>

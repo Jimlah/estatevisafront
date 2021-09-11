@@ -14,9 +14,19 @@ const App = () => {
   const [user, setUser] = useState(null);
   const [status, setStatus] = useState(null);
   const [pageLoader, setPageLoader] = useState(false);
+  const [submitLoader, setSubmitLoader] = useState(false);
+  const [tableLoader, setTableLoader] = useState(false);
+
   const history = useHistory();
 
-  const initialPageLoaderState = { pageLoader, setPageLoader };
+  const initialPageLoaderState = {
+    pageLoader,
+    setPageLoader,
+    tableLoader,
+    setTableLoader,
+    submitLoader,
+    setSubmitLoader,
+  };
   const initialUserState = { user, setUser };
   const initialAlertState = {
     message,
