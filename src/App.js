@@ -5,14 +5,18 @@ import { UserContext } from "./context/UserContext";
 import Root from "./components/pages/layout/Root";
 import { getUser } from "./utils/common";
 import { useHistory } from "react-router-dom";
+import { PageLoaderContext } from "./context/PageLoaderContext";
+import PageLoader from "./components/Loader/PageLoader";
 
 const App = () => {
   const [message, setMessage] = useState(null);
   const [errors, setErrors] = useState(null);
   const [user, setUser] = useState(null);
   const [status, setStatus] = useState(null);
+  const [pageLoader, setPageLoader] = useState(false);
   const history = useHistory();
 
+  const initialPageLoaderState = { pageLoader, setPageLoader };
   const initialUserState = { user, setUser };
   const initialAlertState = {
     message,
@@ -42,22 +46,25 @@ const App = () => {
 
   return (
     <div>
-      <UserContext.Provider value={initialUserState}>
-        <AlertContext.Provider value={initialAlertState}>
-          {message && (
-            <Alert
-              message={message}
-              status={status}
-              handleClick={() => {
-                setMessage(null);
-                setStatus(null);
-                setErrors(null);
-              }}
-            />
-          )}
-          <Root />
-        </AlertContext.Provider>
-      </UserContext.Provider>
+      <PageLoaderContext.Provider value={initialPageLoaderState}>
+        <PageLoader isLoading={pageLoader} />
+        <UserContext.Provider value={initialUserState}>
+          <AlertContext.Provider value={initialAlertState}>
+            {message && (
+              <Alert
+                message={message}
+                status={status}
+                handleClick={() => {
+                  setMessage(null);
+                  setStatus(null);
+                  setErrors(null);
+                }}
+              />
+            )}
+            <Root />
+          </AlertContext.Provider>
+        </UserContext.Provider>
+      </PageLoaderContext.Provider>
     </div>
   );
 };
