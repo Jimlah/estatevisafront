@@ -22,7 +22,7 @@ const Sidebar = () => {
   };
 
   return (
-    <nav className="h-full bg-white px-2 flex flex-col items-start justify-start space-y-8 py-2 dark:bg-gray-900">
+    <nav className="h-full px-2 flex flex-col items-start justify-start space-y-8 py-2 bg-white bg-opacity-75 rounded-md shadow dark:bg-opacity-20 dark:bg-black">
       <button
         onClick={handleHide}
         className="flex items-center justify-center space-x-3 focus:outline-none"

@@ -40,15 +40,15 @@ const DeleteConfirmation = ({ funDelete, id, setId }) => {
               <RiDeleteBin6Line />
             </IconContext.Provider>
           </span>
-          <h2 className="font-bold text-xl">Are you sure?</h2>
-          <p className="break-all text-center whitespace-normal text-sm text-gray-500">
+          <h2 className="font-bold text-xl dark:text-white">Are you sure?</h2>
+          <p className="break-all text-center whitespace-normal text-sm dark:text-gray-200 text-gray-700">
             Do you really want to delete this item? This process cannot be
             undone.
           </p>
           <div className="flex items-center justify-center space-x-5">
             <button
               onClick={handleClick}
-              className="px-3 py-2 rounded-full tracking-wide border border-gray-300 font-bold text-gray-700 hover:bg-gray-300"
+              className="px-3 py-2 rounded-full tracking-wide border border-gray-300 font-bold dark:text-gray-200 text-gray-700 hover:bg-gray-300"
             >
               Cancel
             </button>

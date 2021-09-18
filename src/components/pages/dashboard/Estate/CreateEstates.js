@@ -63,7 +63,7 @@ const CreateEstates = () => {
 
   return (
     <div className="flex flex-col items-center justify-start w-full h-full">
-      <div className="flex flex-col w-full max-w-lg p-5 space-y-3 bg-white bg-opacity-75 rounded-md shadow dark:bg-opacity-10">
+      <div className="flex flex-col w-full max-w-lg p-5 space-y-3 p-2 sm:p-5 bg-white bg-opacity-75 rounded-md shadow dark:bg-opacity-20 dark:bg-black">
         <span className="text-sm font-bold text-gray-500">Estate</span>
         <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-5">
           <Input

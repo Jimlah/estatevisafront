@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { AiOutlinePlus } from "react-icons/ai";
 import TableLoader from "../Loader/TableLoader";
 import { PageLoaderContext } from "../../context/PageLoaderContext";
+import WrapperPanel from "../Layouts/WrapperPanel";
 
 const Table = ({ fetcher, headings, columns, view, edit, destroy, create }) => {
   const { setMessage } = useContext(AlertContext);
@@ -27,7 +28,7 @@ const Table = ({ fetcher, headings, columns, view, edit, destroy, create }) => {
     setTableLoader(true);
     setCurrentPage(1);
     setTableLoader(false);
-    
+
     // eslint-disable-next-line
   }, [result, setCurrentPage]);
 
@@ -43,52 +44,54 @@ const Table = ({ fetcher, headings, columns, view, edit, destroy, create }) => {
   }, [error, setMessage, data, result, currentPage, setSearchData]);
 
   return (
-    <div className="flex flex-col w-full p-5 space-y-3 bg-white bg-opacity-75 rounded-md shadow dark:bg-opacity-10">
-      <div className="flex flex-wrap items-center justify-between">
-        {create && (
-          <Link
-            to={create}
-            className="flex items-center justify-center px-3 py-2 space-x-2 text-sm font-bold text-white bg-indigo-500 rounded-md hover:bg-indigo-700"
-          >
-            <span>
-              <AiOutlinePlus />
-            </span>
-            <span>New</span>
-          </Link>
-        )}
-        <div className="flex items-center justify-end space-x-3">
-          <button className="px-3 py-2 text-xs font-bold text-white bg-blue-500 rounded-md hover:bg-blue-700 sm:text-sm ">
-            Import
-          </button>
-          <button className="px-3 py-2 text-xs font-bold text-white bg-red-500 rounded-md hover:bg-red-700 sm:text-sm">
-            Export
-          </button>
+    <WrapperPanel>
+      <div className="flex flex-col w-full p-5 space-y-5">
+        <div className="flex flex-wrap items-center justify-between">
+          {create && (
+            <Link
+              to={create}
+              className="flex items-center justify-center px-3 py-2 space-x-2 text-sm font-bold text-white bg-indigo-500 rounded-md hover:bg-indigo-700"
+            >
+              <span>
+                <AiOutlinePlus />
+              </span>
+              <span>Add</span>
+            </Link>
+          )}
+          <div className="flex items-center justify-end space-x-3">
+            <button className="px-3 py-2 text-xs font-bold text-white bg-blue-500 rounded-md hover:bg-blue-700 text-sm font-bold">
+              Import
+            </button>
+            <button className="px-3 py-2 text-xs font-bold text-white bg-red-500 rounded-md hover:bg-red-700 text-sm font-bold">
+              Export
+            </button>
+          </div>
         </div>
+        <div className="w-full h-full overflow-x-auto overflow-y-auto font-mono">
+          <table className="relative w-full table-auto">
+            <Thead headings={headings} />
+            <Tbody
+              data={pageData}
+              column={columns}
+              setDeleteId={setDeleteId}
+              edit={true}
+              view={true}
+            />
+            <TableLoader isLoading={tableLoader} length={headings.length} />
+          </table>
+        </div>
+        <PaginationButton
+          handlePrev={handlePrev}
+          handleNext={handleNext}
+          currentPage={currentPage}
+        />
+        <DeleteConfirmation
+          funDelete={destroy}
+          id={deleteId}
+          setId={setDeleteId}
+        />
       </div>
-      <div className="w-full h-full overflow-x-auto overflow-y-auto font-mono">
-        <table className="relative w-full table-auto">
-          <Thead headings={headings} />
-          <Tbody
-            data={pageData}
-            column={columns}
-            setDeleteId={setDeleteId}
-            edit={true}
-            view={true}
-          />
-          <TableLoader isLoading={tableLoader} length={headings.length} />
-        </table>
-      </div>
-      <PaginationButton
-        handlePrev={handlePrev}
-        handleNext={handleNext}
-        currentPage={currentPage}
-      />
-      <DeleteConfirmation
-        funDelete={destroy}
-        id={deleteId}
-        setId={setDeleteId}
-      />
-    </div>
+    </WrapperPanel>
   );
 };
 
